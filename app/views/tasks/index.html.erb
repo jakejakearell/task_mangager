@@ -1,0 +1,30 @@
+<style>
+
+div {
+  width: 20%;
+  border: 5px solid black;
+  padding: 5px;
+  margin: 10px;
+  text-align: left;
+}
+
+body {
+  background-color: #E6E6FA;
+}
+</style>
+
+
+<h1>All Tasks</h1>
+
+<% @tasks.each do |task| %>
+  <div>
+  <h3><a href="/tasks/<%= task.id %>"><%= task.title %></a></h3>
+  <p><%= task.description %></p>
+  <a href="/tasks/<%= task.id  %>/edit">Edit</a>
+  <form action="/tasks/<%= task.id %>" method="POST">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="delete"/>
+  </div>
+  </form>
+<% end %>
